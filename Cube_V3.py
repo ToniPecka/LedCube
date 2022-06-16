@@ -1,4 +1,4 @@
-# Kostka V2
+# Kostka V3
 # Levy predni dolni roh je souradnice CS0.
 # Odpredu dozadu rada, Odspodu nahoru vrstvy, otoceno v inputu.
 # pattern("vrstva"+"rada_8"+"rada_7"+"rada_6"+...+"rada_1")
