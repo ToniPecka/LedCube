@@ -4,9 +4,11 @@
 # pattern("vrstva"+"rada_8"+"rada_7"+"rada_6"+...+"rada_1")
 # Vrstva = 87654321     # Rada_X = 87654321
 # FULL LIGHT: pattern = ("11111111"+"11111111"+"11111111"+"11111111"+"11111111"+"11111111"+"11111111"+"11111111"+"11111111")
+import random
 from time import sleep
 from gpiozero import LED
 from random import randrange
+from address_dict import *
 
 # GPIO Definition
 serial = LED(14) # SER Data vstup                   ---serial
@@ -114,6 +116,21 @@ while(True):
                 pattern = (vrstvy_seznam[i-1] + rady_seznam[4])
                 show(pattern)
                 sleep(0.05)
+
+    # Mode: Advanced rain
+    if mode == "Advanced rain":
+        led_list = list()
+        number_of_rains = 4
+        for rain in range(number_of_rains):
+            x, y = random.randrange(1, object_dimension[0] + 1), random.randrange(1, object_dimension[1] + 1)
+            for i in range(object_dimension[2]):
+                led = int(str(x) + str(y) + str(object_dimension[2]-i-rain))
+                led_list.append(led_address[led])
+
+        pattern = join_leds(led_address)
+        show(pattern)
+        sleep(0.3)
+
            
            
     # Mode: exit
