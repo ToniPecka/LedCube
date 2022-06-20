@@ -1,3 +1,4 @@
+import random
 object_dimension = [8, 8, 8]  # width, length, height
 
 led_address = dict()

@@ -120,11 +120,11 @@ while(True):
     if mode == "Advanced rain":
         number_of_rains = 8
         led_list.clear()
-
-        for rain in range(number_of_rains):
-            x = random.randint(1, object_dimension[0])
-            y = random.randint(1, object_dimension[1])
-            rain_list.append(LedRain(x, y, rain))
+        if len(rain_list) == 0:
+            for rain in range(number_of_rains):
+                x = random.randint(1, object_dimension[0])
+                y = random.randint(1, object_dimension[1])
+                rain_list.append(LedRain(x, y, rain))
         for item in rain_list:
             item.step()
 
