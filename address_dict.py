@@ -1,7 +1,8 @@
 object_dimension = [8, 8, 8]  # width, length, height
-import random
-led_address = {
-}
+
+led_address = dict()
+led_list = list()
+rain_list = list()
 
 for i in range(object_dimension[0]):
     for j in range(object_dimension[1]):
@@ -32,14 +33,25 @@ def join_leds(led_list):
     return joined_leds_str
 
 
-led_list = list()
-number_of_rains = 4
-for rain in range(number_of_rains):
-    x, y = random.randrange(1, object_dimension[0] + 1), random.randrange(1, object_dimension[1] + 1)
-    for i in range(object_dimension[2]):
-        led = int(str(x) + str(y) + str(object_dimension[2] - i - rain))
-        print(led)
-        led_list.append(led_address[led])
+class LedRain():
+    def __init__(self, x, y, offset):
+        self.x = x
+        self.y = y
+        self.offset = offset
+        self.z = object_dimension[2]
 
-pattern = join_leds(led_address)
-print(pattern)
+    def step(self):
+        if self.offset > 0:
+            self.offset -= 1
+        else:
+            if self.z >= 1:
+                led_list.append(led_address[int(str(self.x)+str(self.y)+str(self.z))])
+            self.z -= 1
+            if self.z == 0:
+                self.delete()
+                x = random.randint(1, object_dimension[0])
+                y = random.randint(1, object_dimension[1])
+                rain_list.append(LedRain(x, y, 1))
+
+    def delete(self):
+        rain_list.remove(self)

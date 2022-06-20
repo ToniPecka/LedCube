@@ -4,10 +4,9 @@
 # pattern("vrstva"+"rada_8"+"rada_7"+"rada_6"+...+"rada_1")
 # Vrstva = 87654321     # Rada_X = 87654321
 # FULL LIGHT: pattern = ("11111111"+"11111111"+"11111111"+"11111111"+"11111111"+"11111111"+"11111111"+"11111111"+"11111111")
-import random
 from time import sleep
 from gpiozero import LED
-from random import randrange
+from random import randrange, randint
 from address_dict import *
 
 # GPIO Definition
@@ -119,13 +118,15 @@ while(True):
 
     # Mode: Advanced rain
     if mode == "Advanced rain":
-        led_list = list()
-        number_of_rains = 4
+        number_of_rains = 8
+        led_list.clear()
+
         for rain in range(number_of_rains):
-            x, y = random.randrange(1, object_dimension[0] + 1), random.randrange(1, object_dimension[1] + 1)
-            for i in range(object_dimension[2]):
-                led = int(str(x) + str(y) + str(object_dimension[2]-i-rain))
-                led_list.append(led_address[led])
+            x = random.randint(1, object_dimension[0])
+            y = random.randint(1, object_dimension[1])
+            rain_list.append(LedRain(x, y, rain))
+        for item in rain_list:
+            item.step()
 
         pattern = join_leds(led_address)
         show(pattern)
