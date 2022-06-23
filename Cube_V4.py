@@ -122,14 +122,13 @@ while(True):
         led_list.clear()
         if len(rain_list) == 0:
             for rain in range(number_of_rains):
-                x = random.randint(1, object_dimension[0])
-                y = random.randint(1, object_dimension[1])
+                x = random.randint(1, cube_dimension[0])
+                y = random.randint(1, cube_dimension[1])
                 rain_list.append(LedRain(x, y, rain))
         for item in rain_list:
             item.step()
-
-        pattern = join_leds(led_address)
-        show(pattern)
+        for led in led_list:
+            show(led)
         sleep(0.3)
 
            
