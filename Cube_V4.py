@@ -9,11 +9,11 @@ from gpiozero import LED
 from random import randrange
 
 # GPIO Definition
-serial = LED(14) # SER Data vstup                   ---serial
-enabler = LED(15) # OE| LowVolt = povoli vystupy    ---enabler
-store = LED(18)  # RCLK Storage clock show stored   ---store
-clock = LED(23) # SRCLK Shift reg clock             ---clock 
-clear = LED(24) # SRCLR| Reset LowVolt = clear      ---clear
+serial = LED(14) # SER Data vstup                   -Orange---Serial-
+enabler = LED(15) # OE| LowVolt = povoli vystupy    -Gray---Enabler-
+store = LED(18)  # RCLK Storage clock show stored   -Violet---Store-
+clock = LED(23) # SRCLK Shift reg clock             -Green---Clock- 
+clear = LED(24) # SRCLR| Reset LowVolt = clear      -Brown---Clear-
 
 # Basic Pattern
 pattern = ("00000001"+"00000000"+"00000000"+"00000000"+"00000000"+"00000000"+"00000000"+"00000000"+"00000001")
